@@ -9,20 +9,22 @@
   "page_action" :
   {
     "default_icon" : "icon.png",
-    "default_title" : "DotPay- Chrome",
+    "default_title" : "DotPay - Chrome",
     "default_popup": "popup.html"
   },
   "content_scripts": [
     {
-      "matches": ["https://ssl.dotpay.pl/t2/*"],
+      "matches": ["http://demo.credit-agricole.pl/*", "https://ssl.dotpay.pl/t2/*"],
       "css": ["dotpay-info.css"],
       "js": ["dotpay-info.js"],
       "run_at": "document_end" 
     }
   ],
   "permissions": [ 
+  "activeTab",
   "declarativeContent",
-  "tabs"
+  "tabs",
+  "storage"
   ],
   "icons" : {
     "48" : "icon.png",

@@ -29,5 +29,8 @@ chrome.runtime.onInstalled.addListener(function(details) {
 
 chrome.runtime.onMessage.addListener(
 function(request, sender, sendResponse) {
-  alert(request);
+  console.log(request);
+  chrome.storage.sync.set({'myData': request}, function(){
+    console.log('Sukces!!!');
+  });
 });
