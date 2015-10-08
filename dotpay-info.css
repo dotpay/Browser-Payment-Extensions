@@ -1,0 +1,15 @@
+#dotpay-info {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	min-width: 400px;
+  min-height: 100px;
+  padding: 10px;
+  -webkit-box-shadow: -3px -4px 5px 0px rgba(50, 50, 50, 0.75);
+  -moz-box-shadow: -3px -4px 5px 0px rgba(50, 50, 50, 0.75);
+  box-shadow: -2px -3px 5px 0px rgba(50, 50, 50, 0.4);
+	font-size: 20px;
+	font-weight: bold;
+	color: red;
+  background-color: #EEF2F4;
+}

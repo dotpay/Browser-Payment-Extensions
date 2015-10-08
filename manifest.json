@@ -1,0 +1,32 @@
+{
+  "name" : "DotPay - Chrome",
+  "version" : "1.0",
+  "description" : "Copy data from datpay",
+  "background" : {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "page_action" :
+  {
+    "default_icon" : "icon.png",
+    "default_title" : "DotPay- Chrome",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://ssl.dotpay.pl/t2/*"],
+      "css": ["dotpay-info.css"],
+      "js": ["dotpay-info.js"],
+      "run_at": "document_end" 
+    }
+  ],
+  "permissions": [ 
+  "declarativeContent",
+  "tabs"
+  ],
+  "icons" : {
+    "48" : "icon.png",
+    "128" : "icon.png"
+  },
+  "manifest_version": 2
+}
