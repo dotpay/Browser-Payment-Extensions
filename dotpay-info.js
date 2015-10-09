@@ -1,4 +1,40 @@
 var pageAdres = window.location.href;
+/****************************************************
+* Send data to plugin
+*****************************************************/
+function sendData(e) {
+  e.preventDefault();
+  chrome.runtime.sendMessage(dotpayData);
+}
+/****************************************************
+* Recive data for plugin                                
+*****************************************************/
+function reciveDataCreditAgricole(e) {
+  e.preventDefault();
+  chrome.storage.sync.get('dotpayData', function(data){
+    console.log(data)
+    if (data.dotpayData != undefined) {
+      document.getElementById('ben_account').value = data.dotpayData[0];
+      document.getElementById('amount').value = data.dotpayData[1];
+      document.getElementById('title_1').value = data.dotpayData[2];
+      document.getElementById('beneficiary_1').value = data.dotpayData[3];
+      document.getElementById('beneficiary_2').value = data.dotpayData[4];
+      document.getElementById('beneficiary_3').value = data.dotpayData[5];
+    } 
+    else {
+      console.log('Bufor jest pusty - proszę zapisać wcześniej dane z formularza')
+    }
+  });
+}
+/****************************************************
+* Remove data for plugin                                
+*****************************************************/
+function clearData(e) {
+  e.preventDefault();
+  chrome.storage.sync.clear(function(data){
+    console.log('Clear!!!')
+  });
+}
 
 /****************************************************
 * Check if ssl.dotpay.pl - PAGE
@@ -56,46 +92,13 @@ if(pageAdres.startsWith('http://demo.credit-agricole.pl/')) {
    var info = document.getElementById('mainForm');
    info.innerHTML += '<div id="dotpay-info">Demo Credit Agricole <br />' 
                      +'<button id="recive">Test Recive</button><button id="clear">Clear</button></div>' ;
-  //Triger
+  
+  /****************************************************
+  * Triger
+  *****************************************************/
   document.querySelector('#recive').addEventListener(
   'click', reciveDataCreditAgricole);
   document.querySelector('#clear').addEventListener(
   'click', clearData);
 }
 
-/****************************************************
-* Send data to plugin
-*****************************************************/
-function sendData(e) {
-  e.preventDefault();
-  chrome.runtime.sendMessage(dotpayData);
-}
-/****************************************************
-* Recive data for plugin                                
-*****************************************************/
-function reciveDataCreditAgricole(e) {
-  e.preventDefault();
-  chrome.storage.sync.get('dotpayData', function(data){
-    console.log(data)
-    if (data.dotpayData != undefined) {
-      document.getElementById('ben_account').value = data.dotpayData[0];
-      document.getElementById('amount').value = data.dotpayData[1];
-      document.getElementById('title_1').value = data.dotpayData[2];
-      document.getElementById('beneficiary_1').value = data.dotpayData[3];
-      document.getElementById('beneficiary_2').value = data.dotpayData[4];
-      document.getElementById('beneficiary_3').value = data.dotpayData[5];
-    } 
-    else {
-      console.log('Bufor jest pusty - proszę zapisać wcześniej dane z formularza')
-    }
-  });
-}
-/****************************************************
-* Remove data for plugin                                
-*****************************************************/
-function clearData(e) {
-  e.preventDefault();
-  chrome.storage.sync.clear(function(data){
-    console.log('Clear!!!')
-  });
-}
