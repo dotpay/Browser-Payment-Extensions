@@ -58,7 +58,7 @@ if(pageAdres.startsWith('http://demo.credit-agricole.pl/')) {
                      +'<button id="recive">Test Recive</button><button id="clear">Clear</button></div>' ;
   //Triger
   document.querySelector('#recive').addEventListener(
-  'click', reciveData);
+  'click', reciveDataCreditAgricole);
   document.querySelector('#clear').addEventListener(
   'click', clearData);
 }
@@ -73,7 +73,7 @@ function sendData(e) {
 /****************************************************
 * Recive data for plugin                                
 *****************************************************/
-function reciveData(e) {
+function reciveDataCreditAgricole(e) {
   e.preventDefault();
   chrome.storage.sync.get('dotpayData', function(data){
     console.log(data)
