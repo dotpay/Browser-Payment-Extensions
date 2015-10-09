@@ -7,7 +7,7 @@ function sendData(e) {
   chrome.runtime.sendMessage(dotpayData);
 }
 /****************************************************
-* Recive data for plugin                                
+* Recive data for Credit Agricole - Plugin                                
 *****************************************************/
 function reciveDataCreditAgricole(e) {
   e.preventDefault();
@@ -20,6 +20,26 @@ function reciveDataCreditAgricole(e) {
       document.getElementById('beneficiary_1').value = data.dotpayData[3];
       document.getElementById('beneficiary_2').value = data.dotpayData[4];
       document.getElementById('beneficiary_3').value = data.dotpayData[5];
+    } 
+    else {
+      console.log('Bufor jest pusty - proszę zapisać wcześniej dane z formularza')
+    }
+  });
+}
+/****************************************************
+* Recive data for BGZ - Plugin                                
+*****************************************************/
+function reciveDataBGZ(e) {
+  e.preventDefault();
+  chrome.storage.sync.get('dotpayData', function(data){
+    console.log(data)
+    if (data.dotpayData != undefined) {
+      document.getElementById('id_account_nr').value = data.dotpayData[0];
+      document.getElementById('id_amount').value = data.dotpayData[1];
+      document.getElementById('id_title').value = data.dotpayData[2];
+      document.getElementById('id_name').value = data.dotpayData[3];
+      document.getElementById('id_address1').value = data.dotpayData[4];
+      document.getElementById('id_address2').value = data.dotpayData[5];
     } 
     else {
       console.log('Bufor jest pusty - proszę zapisać wcześniej dane z formularza')
@@ -92,12 +112,28 @@ if(pageAdres.startsWith('http://demo.credit-agricole.pl/')) {
    var info = document.getElementById('mainForm');
    info.innerHTML += '<div id="dotpay-info">Demo Credit Agricole <br />' 
                      +'<button id="recive">Test Recive</button><button id="clear">Clear</button></div>' ;
-  
+
   /****************************************************
   * Triger
   *****************************************************/
   document.querySelector('#recive').addEventListener(
   'click', reciveDataCreditAgricole);
+  document.querySelector('#clear').addEventListener(
+  'click', clearData);
+}
+/****************************************************
+* Check if demo.ebgz.pl - PAGE
+*****************************************************/
+if(pageAdres.startsWith('http://demo.ebgz.pl/')) {
+   var info = document.getElementById('main');
+   info.innerHTML += '<div id="dotpay-info">Demo BGŻ <br />' 
+                     +'<button id="recive">Test Recive</button><button id="clear">Clear</button></div>' ;
+  
+  /****************************************************
+  * Triger
+  *****************************************************/
+  document.querySelector('#recive').addEventListener(
+  'click', reciveDataBGZ);
   document.querySelector('#clear').addEventListener(
   'click', clearData);
 }
