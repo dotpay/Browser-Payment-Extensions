@@ -27,13 +27,15 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
   *****************************************************/
   if (img[0].href == 'http://www.bgz.pl/') {
     var info = document.getElementById('main-wrapper');
-    info.innerHTML = info.innerHTML + '<div id="dotpay-info">Info od DotPay dla BGŻ <br /> Iban: ' 
-                      + iban +'<button id="send">Test Sending</button><button id="recive">Test Recive</button><button id="clear">Clear</button></div>';
+    info.innerHTML = info.innerHTML + '<div id="dotpay-info">Info od DotPay dla BGŻ <br /> ' 
+                      + ' Iban: ' + iban +'<button id="send">Test Sending</button>'
+                      + '<button id="clear">Clear</button></div>';
   } 
   else if (img[0].href == 'https://e-bank.credit-agricole.pl/') {
     var info = document.getElementById('main-wrapper');
-    info.innerHTML += '<div id="dotpay-info">Info od DotPay dla Credit Agricole <br /> Iban: ' 
-                      + iban +'<button id="send">Test Sending</button><button id="recive">Test Recive</button><button id="clear">Clear</button></div>' ;
+    info.innerHTML += '<div id="dotpay-info">Info od DotPay dla Credit Agricole <br /> ' 
+                      + 'Iban: ' + iban +'<button id="send">Test Sending</button>' 
+                      + '<button id="clear">Clear</button></div>' ;
   } 
   else {
     console.log('Ten bank nie jest obsługiwany przez plugin DotPay');
@@ -44,8 +46,6 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
   *****************************************************/
   document.querySelector('#send').addEventListener(
   'click', sendData);
-  document.querySelector('#recive').addEventListener(
-  'click', reciveData);
   document.querySelector('#clear').addEventListener(
   'click', clearData);
 }
@@ -76,13 +76,18 @@ function sendData(e) {
 function reciveData(e) {
   e.preventDefault();
   chrome.storage.sync.get('dotpayData', function(data){
-    console.log(data);
-    document.getElementById('ben_account').value = data.dotpayData[0];
-    document.getElementById('amount').value = data.dotpayData[1];
-    document.getElementById('title_1').value = data.dotpayData[2];
-    document.getElementById('beneficiary_1').value = data.dotpayData[3];
-    document.getElementById('beneficiary_2').value = data.dotpayData[4];
-    document.getElementById('beneficiary_3').value = data.dotpayData[5];
+    console.log(data)
+    if (data.dotpayData != undefined) {
+      document.getElementById('ben_account').value = data.dotpayData[0];
+      document.getElementById('amount').value = data.dotpayData[1];
+      document.getElementById('title_1').value = data.dotpayData[2];
+      document.getElementById('beneficiary_1').value = data.dotpayData[3];
+      document.getElementById('beneficiary_2').value = data.dotpayData[4];
+      document.getElementById('beneficiary_3').value = data.dotpayData[5];
+    } 
+    else {
+      console.log('Bufor jest pusty - proszę zapisać wcześniej dane z formularza')
+    }
   });
 }
 /****************************************************

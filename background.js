@@ -22,7 +22,7 @@ var rule2 = {
 var rule3 = {
         conditions: [
           new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: { hostEquals: 'demo.credit-agricole.pl', schemes: ['https'] },
+            pageUrl: { hostEquals: 'demo.credit-agricole.pl' },
           })
         ],
         actions: [ new chrome.declarativeContent.ShowPageAction() ]
