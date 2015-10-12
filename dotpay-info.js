@@ -83,15 +83,27 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
   *****************************************************/
   if (img[0].href == 'http://www.bgz.pl/') {
     var info = document.getElementById('main-wrapper');
-    info.innerHTML = info.innerHTML + '<div id="dotpay-info"><div class="plugin-title">Plugin DotPay.pl - BGŻ </div> ' 
-                      +'<div class="plugin-button"><button id="js-plugin-send">Zapisz dane do przelewu</button>'
-                      + '<button id="js-plugin-clear">Wyczyść dane do przelewu</button></div></div>';
+    info.innerHTML += '<div id="dotpay-info">' 
+                      + '<div class="plugin-title">'
+                        + '<img src="/static_payment/images/layout/logos/logo.png" alt="doptay logo">Plugin DotPay.pl - BGŻ '
+                      +'</div> ' 
+                      +'<div class="plugin-button">'
+                        +'<button id="js-plugin-send" class="plugin-send">Zapisz dane do przelewu</button>'
+                        +'<button id="js-plugin-clear">Wyczyść dane do przelewu</button>' 
+                      +'</div>'
+                    +'</div>';
   } 
   else if (img[0].href == 'https://e-bank.credit-agricole.pl/') {
     var info = document.getElementById('main-wrapper');
-    info.innerHTML += '<div id="dotpay-info"><div class="plugin-title">Plugin DotPay - Credit Agricole </div> ' 
-                      + '<div class="plugin-button"><button id="js-plugin-send">Zapisz dane do przelewu</button>' 
-                      + '<button id="js-plugin-clear">Wyczyść dane do przelewu</button></div></div>' ;
+    info.innerHTML += '<div id="dotpay-info">'
+                        +'<div class="plugin-title">' 
+                          +'<img src="/static_payment/images/layout/logos/logo.png" alt="doptay logo">Plugin DotPay - Credit Agricole'
+                        +' </div> ' 
+                        +'<div class="plugin-button">'
+                          +'<button id="js-plugin-send" class="plugin-send">Zapisz dane do przelewu</button>' 
+                          +'<button id="js-plugin-clear">Wyczyść dane do przelewu</button>'
+                        +'</div>'
+                      +'</div>' ;
   } 
   else {
     console.log('Ten bank nie jest obsługiwany przez plugin DotPay');
