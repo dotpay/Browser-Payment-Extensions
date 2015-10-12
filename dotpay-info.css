@@ -24,14 +24,24 @@
   background: linear-gradient(to bottom, #424346 0%,#38393c 35%,#262628 82%,#222224 97%,#242426 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#424346', endColorstr='#242426',GradientType=0 ); /* IE6-9 */
 }
+.plugin-title img {
+  height: 35px;
+  vertical-align: middle;
+  padding: 7px;
+  margin-right: 10px;
+  border-radius: 5px;
+  background-color: #FFFFFF;
+}
 .plugin-button {
   padding: 10px;
   font-size: 12px;
   color: #000000;
 }
+
 .plugin-button button {
-  height: 40px;
+  min-height: 40px;
+  width: 48%;
 }
 #send {
-  
+
 }
