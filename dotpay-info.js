@@ -2,9 +2,19 @@ var pageAdres = window.location.href;
 /****************************************************
 * Send data to plugin
 *****************************************************/
-function sendData(e) {
+function sendDataCreditAgricole(e) {
   e.preventDefault();
-  chrome.runtime.sendMessage(dotpayData);
+  chrome.runtime.sendMessage(dotpayData, function(response){
+    document.getElementById('plugin-confirm').innerHTML = response.confirm;
+    window.open('http://demo.credit-agricole.pl/konta/symfonia/single_transfer-nowy-przelew-zwykly.htm','_blank');
+  });
+}
+function sendDataBGZ(e) {
+  e.preventDefault();
+  chrome.runtime.sendMessage(dotpayData, function(response){
+    document.getElementById('plugin-confirm').innerHTML = response.confirm;
+    window.open('http://demo.ebgz.pl/demo/przelewy/wykonaj-przelew/krajowy/','_blank');
+  });
 }
 /****************************************************
 * Recive data for Credit Agricole - Plugin                                
@@ -52,7 +62,7 @@ function reciveDataBGZ(e) {
 function clearData(e) {
   e.preventDefault();
   chrome.storage.sync.clear(function(data){
-    console.log('Clear!!!')
+    document.getElementById('plugin-confirm').innerHTML = "Dane zostały usunięte z pamięci";
   });
 }
 
@@ -88,10 +98,12 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
                         + '<img src="/static_payment/images/layout/logos/logo.png" alt="doptay logo">Plugin DotPay.pl - BGŻ '
                       +'</div> ' 
                       +'<div class="plugin-button">'
-                        +'<button id="js-plugin-send" class="plugin-send">Zapisz dane do przelewu</button>'
+                        +'<button id="js-plugin-send" class="plugin-send">Zapisz dane przelewu oraz idź do strony banku</button>'
                         +'<button id="js-plugin-clear">Wyczyść dane do przelewu</button>' 
                       +'</div>'
+                      +'<div id="plugin-confirm"></div>'
                     +'</div>';
+    document.querySelector('#js-plugin-send').addEventListener('click', sendDataBGZ);  //Triger
   } 
   else if (img[0].href == 'https://e-bank.credit-agricole.pl/') {
     var info = document.getElementById('main-wrapper');
@@ -100,20 +112,29 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
                           +'<img src="/static_payment/images/layout/logos/logo.png" alt="doptay logo">Plugin DotPay - Credit Agricole'
                         +' </div> ' 
                         +'<div class="plugin-button">'
-                          +'<button id="js-plugin-send" class="plugin-send">Zapisz dane do przelewu</button>' 
+                          +'<button id="js-plugin-send" class="plugin-send">Zapisz dane do przelewu oraz idź do strony banku</button>' 
                           +'<button id="js-plugin-clear">Wyczyść dane do przelewu</button>'
                         +'</div>'
+                        +'<div id="plugin-confirm"></div>'
                       +'</div>' ;
+    document.querySelector('#js-plugin-send').addEventListener('click', sendDataCreditAgricole);  //Triger
   } 
   else {
     console.log('Ten bank nie jest obsługiwany przez plugin DotPay');
   }
 
+  chrome.storage.sync.get('dotpayData', function(data){
+    if (data.dotpayData == undefined) {
+      document.getElementById('plugin-confirm').innerHTML = "Brak zapisanych danych w pamięci";
+    } 
+    else {
+      document.getElementById('plugin-confirm').innerHTML = "W pamięci przeglądarki są już zapisane dane do realizacji przelewu";
+    }
+  });
+
   /****************************************************
   * Triger
   *****************************************************/
-  document.querySelector('#js-plugin-send').addEventListener(
-  'click', sendData);
   document.querySelector('#js-plugin-clear').addEventListener(
   'click', clearData);
 }

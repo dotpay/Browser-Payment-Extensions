@@ -40,4 +40,6 @@ chrome.runtime.onMessage.addListener(
 function(request, sender, sendResponse) {
   console.log(request);
   chrome.storage.sync.set({'dotpayData': request});
+  if (request != undefined)
+      sendResponse({confirm: "Dane do przelewu zostały zapisane"});
 });
