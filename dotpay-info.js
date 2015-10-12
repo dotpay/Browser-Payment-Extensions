@@ -83,15 +83,15 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
   *****************************************************/
   if (img[0].href == 'http://www.bgz.pl/') {
     var info = document.getElementById('main-wrapper');
-    info.innerHTML = info.innerHTML + '<div id="dotpay-info">Info od DotPay dla BGŻ <br /> ' 
-                      + ' Iban: ' + iban +'<button id="send">Test Sending</button>'
-                      + '<button id="clear">Clear</button></div>';
+    info.innerHTML = info.innerHTML + '<div id="dotpay-info"><div class="plugin-title">Plugin DotPay.pl - BGŻ </div> ' 
+                      +'<div class="plugin-button"><button id="js-plugin-send">Zapisz dane do przelewu</button>'
+                      + '<button id="js-plugin-clear">Wyczyść dane do przelewu</button></div></div>';
   } 
   else if (img[0].href == 'https://e-bank.credit-agricole.pl/') {
     var info = document.getElementById('main-wrapper');
-    info.innerHTML += '<div id="dotpay-info">Info od DotPay dla Credit Agricole <br /> ' 
-                      + 'Iban: ' + iban +'<button id="send">Test Sending</button>' 
-                      + '<button id="clear">Clear</button></div>' ;
+    info.innerHTML += '<div id="dotpay-info"><div class="plugin-title">Plugin DotPay - Credit Agricole </div> ' 
+                      + '<div class="plugin-button"><button id="js-plugin-send">Zapisz dane do przelewu</button>' 
+                      + '<button id="js-plugin-clear">Wyczyść dane do przelewu</button></div></div>' ;
   } 
   else {
     console.log('Ten bank nie jest obsługiwany przez plugin DotPay');
@@ -100,9 +100,9 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
   /****************************************************
   * Triger
   *****************************************************/
-  document.querySelector('#send').addEventListener(
+  document.querySelector('#js-plugin-send').addEventListener(
   'click', sendData);
-  document.querySelector('#clear').addEventListener(
+  document.querySelector('#js-plugin-clear').addEventListener(
   'click', clearData);
 }
 /****************************************************
@@ -110,15 +110,15 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
 *****************************************************/
 if(pageAdres.startsWith('http://demo.credit-agricole.pl/')) {
    var info = document.getElementById('mainForm');
-   info.innerHTML += '<div id="dotpay-info">Demo Credit Agricole <br />' 
-                     +'<button id="recive">Test Recive</button><button id="clear">Clear</button></div>' ;
+   info.innerHTML += '<div id="dotpay-info">Plugin Dotpay.pl - Credit Agricole <br />' 
+                     +'<button id="js-plugin-recive">Test Recive</button><button id="js-plugin-clear">Clear</button></div>' ;
 
   /****************************************************
   * Triger
   *****************************************************/
-  document.querySelector('#recive').addEventListener(
+  document.querySelector('#js-plugin-recive').addEventListener(
   'click', reciveDataCreditAgricole);
-  document.querySelector('#clear').addEventListener(
+  document.querySelector('#js-plugin-clear').addEventListener(
   'click', clearData);
 }
 /****************************************************
@@ -126,15 +126,15 @@ if(pageAdres.startsWith('http://demo.credit-agricole.pl/')) {
 *****************************************************/
 if(pageAdres.startsWith('http://demo.ebgz.pl/')) {
    var info = document.getElementById('main');
-   info.innerHTML += '<div id="dotpay-info">Demo BGŻ <br />' 
-                     +'<button id="recive">Test Recive</button><button id="clear">Clear</button></div>' ;
+   info.innerHTML += '<div id="dotpay-info">Plugin Dotpay.pl - BGŻ <br />' 
+                     +'<button id="js-plugin-recive">Test Recive</button><button id="js-plugin-clear">Clear</button></div>' ;
   
   /****************************************************
   * Triger
   *****************************************************/
-  document.querySelector('#recive').addEventListener(
+  document.querySelector('#js-plugin-recive').addEventListener(
   'click', reciveDataBGZ);
-  document.querySelector('#clear').addEventListener(
+  document.querySelector('#js-plugin-clear').addEventListener(
   'click', clearData);
 }
 
