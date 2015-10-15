@@ -80,6 +80,7 @@
 }
 .plugin-button button:hover {
   color: #FFFFFF;
+  text-decoration: none;
   background: #be2727; /* Old browsers */
   background: -moz-linear-gradient(top, #be2727 0%, #b32424 18%, #9a1f1f 43%, #7c1717 69%, #681313 91%, #641111 100%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#be2727), color-stop(18%,#b32424), color-stop(43%,#9a1f1f), color-stop(69%,#7c1717), color-stop(91%,#681313), color-stop(100%,#641111)); /* Chrome,Safari4+ */
@@ -89,7 +90,7 @@
   background: linear-gradient(to bottom, #be2727 0%,#b32424 18%,#9a1f1f 43%,#7c1717 69%,#681313 91%,#641111 100%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#be2727', endColorstr='#641111',GradientType=0 ); /* IE6-9 */
 }
-#plugin-confirm {
+.plugin-confirm {
   padding: 4px;
   margin-bottom: 10px;
   text-align: center;
