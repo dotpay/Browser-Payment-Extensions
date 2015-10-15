@@ -1,6 +1,3 @@
-// Copyright (c) 2012 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
 var rule1 = {
         conditions: [
           new chrome.declarativeContent.PageStateMatcher({
@@ -38,7 +35,6 @@ chrome.runtime.onInstalled.addListener(function(details) {
 
 chrome.runtime.onMessage.addListener(
 function(request, sender, sendResponse) {
-  console.log(request);
   chrome.storage.sync.set({'dotpayData': request});
   if (request != undefined)
       sendResponse({confirm: "Dane do przelewu zostały zapisane"});

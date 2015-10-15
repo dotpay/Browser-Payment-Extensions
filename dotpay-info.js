@@ -1,18 +1,19 @@
 var pageAdres = window.location.href;
+
 /****************************************************
 * Send data to plugin
 *****************************************************/
 function sendDataCreditAgricole(e) {
   e.preventDefault();
   chrome.runtime.sendMessage(dotpayData, function(response){
-    document.getElementById('plugin-confirm').innerHTML = response.confirm;
+    document.getElementById('js-plugin-confirm').innerHTML = response.confirm;
     window.open('http://demo.credit-agricole.pl/konta/symfonia/single_transfer-nowy-przelew-zwykly.htm','_blank');
   });
 }
 function sendDataBGZ(e) {
   e.preventDefault();
   chrome.runtime.sendMessage(dotpayData, function(response){
-    document.getElementById('plugin-confirm').innerHTML = response.confirm;
+    document.getElementById('js-plugin-confirm').innerHTML = response.confirm;
     window.open('http://demo.ebgz.pl/demo/przelewy/wykonaj-przelew/krajowy/','_blank');
   });
 }
@@ -22,7 +23,6 @@ function sendDataBGZ(e) {
 function reciveDataCreditAgricole(e) {
   e.preventDefault();
   chrome.storage.sync.get('dotpayData', function(data){
-    console.log(data)
     if (data.dotpayData != undefined) {
       document.getElementById('ben_account').value = data.dotpayData[0];
       document.getElementById('amount').value = data.dotpayData[1];
@@ -30,22 +30,20 @@ function reciveDataCreditAgricole(e) {
       document.getElementById('beneficiary_1').value = data.dotpayData[3];
       document.getElementById('beneficiary_2').value = data.dotpayData[4];
       document.getElementById('beneficiary_3').value = data.dotpayData[5];
+      // Remove form storage after recive data
       chrome.storage.sync.clear(function(data){
-        document.getElementById('plugin-confirm').innerHTML = "Dane zostały usunięte z pamięci";
+        document.getElementById('js-plugin-confirm').innerHTML = "Dane zostały usunięte z pamięci";
       });
     } 
-    else {
-      console.log('Bufor jest pusty - proszę zapisać wcześniej dane z formularza')
-    }
   });
 }
+
 /****************************************************
 * Recive data for BGZ - Plugin                                
 *****************************************************/
 function reciveDataBGZ(e) {
   e.preventDefault();
   chrome.storage.sync.get('dotpayData', function(data){
-    console.log(data)
     if (data.dotpayData != undefined) {
       document.getElementById('id_account_nr').value = data.dotpayData[0];
       document.getElementById('id_amount').value = data.dotpayData[1];
@@ -53,22 +51,21 @@ function reciveDataBGZ(e) {
       document.getElementById('id_name').value = data.dotpayData[3];
       document.getElementById('id_address1').value = data.dotpayData[4];
       document.getElementById('id_address2').value = data.dotpayData[5];
+      // Remove form storage after recive data
       chrome.storage.sync.clear(function(data){
-        document.getElementById('plugin-confirm').innerHTML = "Dane zostały usunięte z pamięci";
+        document.getElementById('js-plugin-confirm').innerHTML = "Dane zostały usunięte z pamięci";
       });
     } 
-    else {
-      console.log('Bufor jest pusty - proszę zapisać wcześniej dane z formularza')
-    }
   });
 }
+
 /****************************************************
 * Remove data for plugin                                
 *****************************************************/
 function clearData(e) {
   e.preventDefault();
   chrome.storage.sync.clear(function(data){
-    document.getElementById('plugin-confirm').innerHTML = "Dane zostały usunięte z pamięci";
+    document.getElementById('js-plugin-confirm').innerHTML = "Dane zostały usunięte z pamięci";
   });
 }
 
@@ -92,10 +89,9 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
   dotpayData[4] = street;
   dotpayData[5] = postCodeCity;
 
-  console.log(dotpayData)
 
   /****************************************************
-  * Display info box
+  * Display Plugin Box
   *****************************************************/
   if (img[0].href == 'http://www.bgz.pl/') {
     var info = document.getElementById('main-wrapper');
@@ -107,9 +103,9 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
                         +'<button id="js-plugin-send" class="plugin-send">Zapisz dane przelewu oraz idź do strony banku</button>'
                         +'<button id="js-plugin-clear">Usuś z pamięci zapisane dane do przelewu</button>' 
                       +'</div>'
-                      +'<div id="plugin-confirm"></div>'
+                      +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
                     +'</div>';
-    document.querySelector('#js-plugin-send').addEventListener('click', sendDataBGZ);  //Triger
+    document.getElementById('js-plugin-send').addEventListener('click', sendDataBGZ);  //Triger
   } 
   else if (img[0].href == 'https://e-bank.credit-agricole.pl/') {
     var info = document.getElementById('main-wrapper');
@@ -121,9 +117,9 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
                           +'<button id="js-plugin-send" class="plugin-send">Zapisz dane do przelewu oraz idź do strony banku</button>' 
                           +'<button id="js-plugin-clear">Usuń z pamięci zapisane dane do przelewu</button>'
                         +'</div>'
-                        +'<div id="plugin-confirm"></div>'
+                        +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
                       +'</div>' ;
-    document.querySelector('#js-plugin-send').addEventListener('click', sendDataCreditAgricole);  //Triger
+    document.getElementById('js-plugin-send').addEventListener('click', sendDataCreditAgricole);  //Triger
   } 
   else {
     console.log('Ten bank nie jest obsługiwany przez plugin DotPay');
@@ -131,17 +127,17 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
 
   chrome.storage.sync.get('dotpayData', function(data){
     if (data.dotpayData == undefined) {
-      document.getElementById('plugin-confirm').innerHTML = "Brak zapisanych danych w pamięci";
+      document.getElementById('js-plugin-confirm').innerHTML = "Brak zapisanych danych w pamięci";
     } 
     else {
-      document.getElementById('plugin-confirm').innerHTML = "W pamięci przeglądarki są już zapisane dane do realizacji przelewu";
+      document.getElementById('js-plugin-confirm').innerHTML = "W pamięci przeglądarki są już zapisane dane do realizacji przelewu";
     }
   });
 
   /****************************************************
   * Triger
   *****************************************************/
-  document.querySelector('#js-plugin-clear').addEventListener(
+  document.getElementById('js-plugin-clear').addEventListener(
   'click', clearData);
 }
 /****************************************************
@@ -156,24 +152,24 @@ if(pageAdres.startsWith('http://demo.credit-agricole.pl/')) {
                         +'<div class="plugin-button">'
                           +'<button id="js-plugin-recive">Uzupełnij formularz zapisanymi danymi <br /><span>(po kliknięciu - zapisane dane zostaną automatycznie usunięte z pamięci)</span></button>'
                         +'</div>'
-                        +'<div id="plugin-confirm"></div>'
+                        +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
                       +'</div>'
 
   chrome.storage.sync.get('dotpayData', function(data){
     if (data.dotpayData == undefined) {
-      document.getElementById('plugin-confirm').innerHTML = "Brak zapisanych danych w pamięci";
+      document.getElementById('js-plugin-confirm').innerHTML = "Brak zapisanych danych w pamięci";
     } 
     else {
-      document.getElementById('plugin-confirm').innerHTML = "W pamięci przeglądarki są już zapisane dane do realizacji przelewu";
+      document.getElementById('js-plugin-confirm').innerHTML = "W pamięci przeglądarki są już zapisane dane do realizacji przelewu";
     }
   });
 
   /****************************************************
   * Triger
   *****************************************************/
-  document.querySelector('#js-plugin-recive').addEventListener(
+  document.getElementById('js-plugin-recive').addEventListener(
   'click', reciveDataCreditAgricole);
-  document.querySelector('#js-plugin-clear').addEventListener(
+  document.getElementById('js-plugin-clear').addEventListener(
   'click', clearData);
 }
 /****************************************************
@@ -188,24 +184,24 @@ if(pageAdres.startsWith('http://demo.ebgz.pl/')) {
                         +'<div class="plugin-button">'
                           +'<button id="js-plugin-recive">Uzupełnij formularz zapisanymi danymi <br /><span>(po kliknięciu - zapisane dane zostaną automatycznie usunięte z pamięci)</span></button>'
                         +'</div>'
-                        +'<div id="plugin-confirm"></div>'
+                        +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
                       +'</div>'
 
   chrome.storage.sync.get('dotpayData', function(data){
     if (data.dotpayData == undefined) {
-      document.getElementById('plugin-confirm').innerHTML = "Brak zapisanych danych w pamięci";
+      document.getElementById('js-plugin-confirm').innerHTML = "Brak zapisanych danych w pamięci";
     } 
     else {
-      document.getElementById('plugin-confirm').innerHTML = "W pamięci przeglądarki są już zapisane dane do realizacji przelewu";
+      document.getElementById('js-plugin-confirm').innerHTML = "W pamięci przeglądarki są już zapisane dane do realizacji przelewu";
     }
   });
   
   /****************************************************
   * Triger
   *****************************************************/
-  document.querySelector('#js-plugin-recive').addEventListener(
+  document.getElementById('js-plugin-recive').addEventListener(
   'click', reciveDataBGZ);
-  document.querySelector('#js-plugin-clear').addEventListener(
+  document.getElementById('js-plugin-clear').addEventListener(
   'click', clearData);
 }
 
