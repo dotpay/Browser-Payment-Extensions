@@ -23,7 +23,7 @@ var rule3 = {
           })
         ],
         actions: [ new chrome.declarativeContent.ShowPageAction() ]
-      };      
+      };
 
 chrome.runtime.onInstalled.addListener(function(details) {
   chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {

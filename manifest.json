@@ -17,10 +17,10 @@
       "matches": ["http://demo.credit-agricole.pl/*", "https://ssl.dotpay.pl/t2/*", "http://demo.ebgz.pl/*"],
       "css": ["dotpay-info.css"],
       "js": ["dotpay-info.js"],
-      "run_at": "document_end" 
+      "run_at": "document_end"
     }
   ],
-  "permissions": [ 
+  "permissions": [
   "activeTab",
   "declarativeContent",
   "tabs",
