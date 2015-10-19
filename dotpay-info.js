@@ -1,4 +1,3 @@
-'use strict';
 var pageAdres = window.location.href;
 
 /****************************************************

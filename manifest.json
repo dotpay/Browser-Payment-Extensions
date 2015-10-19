@@ -8,7 +8,7 @@
   },
   "page_action" :
   {
-    "default_icon" : "icon.png",
+    "default_icon" : "icon/Dotpay_16x16.png",
     "default_title" : "DotPay - Chrome",
     "default_popup": "popup.html"
   },
@@ -27,8 +27,8 @@
   "storage"
   ],
   "icons" : {
-    "48" : "icon.png",
-    "128" : "icon.png"
+    "48" : "icon/Dotpay_128x128.png",
+    "128" : "icon/Dotpay_128x128.png"
   },
   "manifest_version": 2
 }
