@@ -20,8 +20,7 @@ function sendDataBGZ(e) {
 /*****************************************************
 * Recive data for Credit Agricole - Plugin           *
 *****************************************************/
-function reciveDataCreditAgricole(e) {
-  e.preventDefault();
+function reciveDataCreditAgricole() {
   chrome.storage.sync.get('dotpayData', function(data){
     if (data.dotpayData != undefined) {
       document.getElementById('ben_account').value = data.dotpayData[0];
@@ -32,7 +31,7 @@ function reciveDataCreditAgricole(e) {
       document.getElementById('beneficiary_3').value = data.dotpayData[5];
       // Remove form storage after recive data
       chrome.storage.sync.clear(function(data){
-        document.getElementById('js-plugin-confirm').innerHTML = "Dane zostały usunięte z pamięci";
+        document.getElementById('js-plugin-confirm').innerHTML = "Formularz został uzupełniony, a zapisane dane zostały usunięte z pamięci przeglądarki";
       });
     }
   });
@@ -41,8 +40,7 @@ function reciveDataCreditAgricole(e) {
 /****************************************************
 * Recive data for BGZ - Plugin                      *
 *****************************************************/
-function reciveDataBGZ(e) {
-  e.preventDefault();
+function reciveDataBGZ() {
   chrome.storage.sync.get('dotpayData', function(data){
     if (data.dotpayData != undefined) {
       document.getElementById('id_account_nr').value = data.dotpayData[0];
@@ -53,7 +51,7 @@ function reciveDataBGZ(e) {
       document.getElementById('id_address2').value = data.dotpayData[5];
       // Remove form storage after recive data
       chrome.storage.sync.clear(function(data){
-        document.getElementById('js-plugin-confirm').innerHTML = "Dane zostały usunięte z pamięci";
+        document.getElementById('js-plugin-confirm').innerHTML = "Formularz został uzupełniony, a zapisane dane zostały usunięte z pamięci przeglądarki";
       });
     }
   });
@@ -96,27 +94,27 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
   if (img[0].href == 'http://www.bgz.pl/') {
     var info = document.getElementById('main-wrapper');
     info.innerHTML += '<div id="dotpay-info">'
-                      + '<div class="plugin-title">'
-                        + '<img src="/static_payment/images/layout/logos/logo.png" alt="doptay logo">Plugin DotPay.pl - BGŻ '
-                      +'</div> '
                       +'<div class="plugin-button">'
                         +'<button id="js-plugin-send" class="plugin-send">Zapisz dane przelewu oraz idź do strony banku</button>'
                         +'<button id="js-plugin-clear">Usuś z pamięci zapisane dane do przelewu</button>'
                       +'</div>'
                       +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
+                      +'<div class="plugin-title">'
+                        +'<img src="/static_payment/images/layout/logos/logo.png" alt="doptay logo">Plugin DotPay.pl - BGŻ '
+                      +'</div> '
                     +'</div>';
     document.getElementById('js-plugin-send').addEventListener('click', sendDataBGZ);  //Triger
   } else if (img[0].href == 'https://e-bank.credit-agricole.pl/') {
     var info = document.getElementById('main-wrapper');
     info.innerHTML += '<div id="dotpay-info">'
-                        +'<div class="plugin-title">'
-                          +'<img src="/static_payment/images/layout/logos/logo.png" alt="doptay logo">Plugin DotPay - Credit Agricole'
-                        +' </div> '
                         +'<div class="plugin-button">'
                           +'<button id="js-plugin-send" class="plugin-send">Zapisz dane do przelewu oraz idź do strony banku</button>'
                           +'<button id="js-plugin-clear">Usuń z pamięci zapisane dane do przelewu</button>'
                         +'</div>'
                         +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
+                        +'<div class="plugin-title">'
+                          +'<img src="/static_payment/images/layout/logos/logo.png" alt="doptay logo">Plugin DotPay - Credit Agricole'
+                        +' </div> '
                       +'</div>' ;
     document.getElementById('js-plugin-send').addEventListener('click', sendDataCreditAgricole);  //Triger
   }
@@ -144,14 +142,11 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
 *****************************************************/
 if(pageAdres.startsWith('http://demo.credit-agricole.pl/')) {
    var info = document.getElementById('mainForm');
-   info.innerHTML += '<div id="dotpay-info">'
+   info.innerHTML += '<div id="dotpay-info-bank">'
+                        +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
                         +'<div class="plugin-title">'
                           +'<img src="https://ssl.dotpay.pl/static_payment/images/layout/logos/logo.png" style="height: 20px" alt="doptay logo">Plugin DotPay.pl - Credit Agricole '
                         +'</div> '
-                        +'<div class="plugin-button">'
-                          +'<button id="js-plugin-recive">Uzupełnij formularz zapisanymi danymi <br /><span>(po kliknięciu - zapisane dane zostaną automatycznie usunięte z pamięci)</span></button>'
-                        +'</div>'
-                        +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
                       +'</div>'
 
   chrome.storage.sync.get('dotpayData', function(data){
@@ -166,24 +161,18 @@ if(pageAdres.startsWith('http://demo.credit-agricole.pl/')) {
   /****************************************************
   * Triger
   *****************************************************/
-  document.getElementById('js-plugin-recive').addEventListener(
-  'click', reciveDataCreditAgricole);
-  document.getElementById('js-plugin-clear').addEventListener(
-  'click', clearData);
+  reciveDataCreditAgricole();
 }
 /****************************************************
 * Check if demo.ebgz.pl - PAGE
 *****************************************************/
 if(pageAdres.startsWith('http://demo.ebgz.pl/')) {
    var info = document.getElementById('main');
-   info.innerHTML += '<div id="dotpay-info">'
+   info.innerHTML += '<div id="dotpay-info-bank">'
+                        +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
                         +'<div class="plugin-title">'
                           +'<img src="https://ssl.dotpay.pl/static_payment/images/layout/logos/logo.png" style="height: 20px" alt="doptay logo">Plugin DotPay.pl - Credit Agricole '
                         +'</div> '
-                        +'<div class="plugin-button">'
-                          +'<button id="js-plugin-recive">Uzupełnij formularz zapisanymi danymi <br /><span>(po kliknięciu - zapisane dane zostaną automatycznie usunięte z pamięci)</span></button>'
-                        +'</div>'
-                        +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
                       +'</div>'
 
   chrome.storage.sync.get('dotpayData', function(data){
@@ -198,8 +187,5 @@ if(pageAdres.startsWith('http://demo.ebgz.pl/')) {
   /****************************************************
   * Triger
   *****************************************************/
-  document.getElementById('js-plugin-recive').addEventListener(
-  'click', reciveDataBGZ);
-  document.getElementById('js-plugin-clear').addEventListener(
-  'click', clearData);
+  reciveDataBGZ();
 }

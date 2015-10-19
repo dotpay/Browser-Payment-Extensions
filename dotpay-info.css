@@ -1,18 +1,17 @@
-#dotpay-info {
+#dotpay-info,
+#dotpay-info-bank {
   font-family: Helvetica, Arial, 'Lucida Grande', sans-serif;
   z-index: 5;
-	position: fixed;
+  position: fixed;
   opacity: 0.2;
-	bottom: -155px;
-	right: 0;
-	min-width: 420px;
-  min-height: 200px;
+  right: 0;
+  min-width: 420px;
   -webkit-box-shadow: -3px -4px 5px 0px rgba(50, 50, 50, 0.75);
   -moz-box-shadow: -3px -4px 5px 0px rgba(50, 50, 50, 0.75);
   box-shadow: -2px -3px 5px 0px rgba(50, 50, 50, 0.4);
-	font-size: 20px;
-	font-weight: bold;
-	color: #FFFFFF;
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFFFFF;
   background-color: #EEF2F4;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
@@ -20,13 +19,21 @@
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-#dotpay-info:hover {
+#dotpay-info-bank {
+  top: -41px;
+}
+#dotpay-info {
+  top: -157px;
+  min-height: 200px;
+}
+#dotpay-info:hover,
+#dotpay-info-bank:hover {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  bottom: 0;
+  top: 0;
   opacity: 1;
 }
 .plugin-title {
@@ -91,7 +98,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#be2727', endColorstr='#641111',GradientType=0 ); /* IE6-9 */
 }
 .plugin-confirm {
-  padding: 4px;
+  padding: 10px;
   margin-bottom: 10px;
   text-align: center;
   font-size: 10px;
