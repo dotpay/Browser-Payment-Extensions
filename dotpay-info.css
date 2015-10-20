@@ -98,7 +98,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#be2727', endColorstr='#641111',GradientType=0 ); /* IE6-9 */
 }
 .plugin-confirm {
-  padding: 10px;
+  padding: 8px;
   margin-bottom: 10px;
   text-align: center;
   font-size: 10px;
