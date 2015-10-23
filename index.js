@@ -18,33 +18,43 @@ function handleClick(state) {
 
 // Import the page-mod API
 var pageMod = require("sdk/page-mod");
-var self = require("sdk/self");
-var recivedData = require("sdk/page-worker");
+var bankBGZ = require("sdk/page-mod");
+var data = require("sdk/self").data;
+var tabs = require("sdk/tabs");
+var reciveData;
 
 
 
 pageMod.PageMod({
   include: "https://ssl.dotpay.pl/t2/*",
-  contentScriptFile: self.data.url('dotpay-info.js'),
+  contentScriptFile: data.url('dotpay-info.js'),
   contentStyleFile: require("sdk/self").data.url("dotpay-info.css"),
   onAttach: startListening
-  // onAttach: function(worker) {
-  //     worker.port.on("dotpayData", function (data) {
-  //       recivedData = data;
-  //       console.log(recivedData)
-  //       if(recivedData != undefined) {
-  //         worker.port.emit('dotpayData2',recivedData);
-  //         console.log('Dane poszły w świat: ' + recivedData)
-  //       }
-  //   });
-  // }
+});
+bankBGZ.PageMod({
+  include: "http://demo.ebgz.pl/demo/przelewy/wykonaj-przelew/krajowy/",
+  contentScriptFile: data.url('dotpay-infoBGZ.js'),
+  contentStyleFile: require("sdk/self").data.url("dotpay-info.css"),
+  onAttach: startListening
 });
 
 function startListening(worker) {
-  worker.port.on ('dotpayData', function(data) {
-    console.log('back-end data')
-    console.log(data)
-    worker.port.emit('dotpayData2', data);
+  console.log('włączenie startListening')
+  worker.port.on ('dotpayData', function(rdata) {
+    if( Object.prototype.toString.call( rdata ) === '[object Array]' ) {
+      reciveData = rdata;
+      console.log('back-end recive data - Array: ')
+      console.log(reciveData)
+    }
+    tabs.open("http://demo.ebgz.pl/demo/przelewy/wykonaj-przelew/krajowy/");
+  });
+  worker.port.on ('sendData', function(rdata) {
+    console.log(rdata)
+    if (reciveData != undefined) {
+      worker.port.emit('reciveData', reciveData);
+      console.log('IF!!!!! dane wysłane')
+    }else {
+      console.log('reciveData NIE jest tablicą!!!')
+    }
   });
 }
-

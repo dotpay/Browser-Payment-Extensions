@@ -2,19 +2,19 @@ var pageAdres = window.location.href;
 
 function sendDataBGZ () {
   self.port.emit('dotpayData',dotpayData);
-  console.log('funkcja do odbierania danych')
-  self.port.on("dotpayData2", function (data) {
-    console.log('dane zostały odebrane: ' + data)
-    console.log(data)
-  });
+  console.log('dane zostały wysłane')
 }
 function reciveDataBGZ () {
-  console.log('funkcja do odbierania danych')
-  self.port.on("dotpayData2", function (data) {
-    console.log('dane zostały odebrane DRUGI RAZE!!!: ')
+  console.log('recive data - content script')
+  self.port.on ('reciveData', function (data) {
+    alert('dane odebrane!!!!')
+    console.log('dane odebrane')
     console.log(data)
   });
+  self.port.emit ('sendData', 'prośba o wysłanie danych');
+  console.log('To jest koniec - nie ma już nic do odebrania')
 }
+
 /****************************************************
 * Check if ssl.dotpay.pl - PAGE
 *****************************************************/
