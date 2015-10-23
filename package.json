@@ -1,6 +1,6 @@
 {
   "title": "Firefox Plugin",
-  "name": "firstplugin",
+  "name": "firstPluginFirefox",
   "version": "0.0.1",
   "description": "DotPay plugin for Firefox",
   "main": "index.js",
