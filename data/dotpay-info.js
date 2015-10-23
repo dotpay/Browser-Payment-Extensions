@@ -2,13 +2,18 @@ var pageAdres = window.location.href;
 
 function sendDataBGZ () {
   self.port.emit('dotpayData',dotpayData);
+  console.log('funkcja do odbierania danych')
+  self.port.on("dotpayData2", function (data) {
+    console.log('dane zostały odebrane: ' + data)
+    console.log(data)
+  });
 }
 function reciveDataBGZ () {
   console.log('funkcja do odbierania danych')
   self.port.on("dotpayData2", function (data) {
+    console.log('dane zostały odebrane DRUGI RAZE!!!: ')
     console.log(data)
   });
-  console.log('to jest recivedata: ' + recivedData)
 }
 /****************************************************
 * Check if ssl.dotpay.pl - PAGE

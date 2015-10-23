@@ -1,14 +1,3 @@
-// var self = require('sdk/self');
-
-// // a dummy function, to show how tests work.
-// // to see how to test this function, look at test/test-index.js
-// function dummy(text, callback) {
-//   callback(text);
-// }
-
-
-// exports.dummy = dummy;
-
 var buttons = require('sdk/ui/button/action');
 var tabs = require("sdk/tabs");
 
@@ -30,25 +19,32 @@ function handleClick(state) {
 // Import the page-mod API
 var pageMod = require("sdk/page-mod");
 var self = require("sdk/self");
-var recivedData = require("sdk/self");;
+var recivedData = require("sdk/page-worker");
 
-// Create a page-mod
-// It will run a script whenever a ".org" URL is loaded
-// The script replaces the page contents with a message
+
+
 pageMod.PageMod({
   include: "https://ssl.dotpay.pl/t2/*",
   contentScriptFile: self.data.url('dotpay-info.js'),
   contentStyleFile: require("sdk/self").data.url("dotpay-info.css"),
-  onAttach: function(worker) {
-      worker.port.on("dotpayData", function (data) {
-        recivedData = data;
-        console.log(recivedData)
-        if(recivedData != undefined) {
-          worker.port.emit('dotpayData2',recivedData);
-          console.log('Dane poszły w świat: ' + recivedData)
-        }
-    });
-  }
+  onAttach: startListening
+  // onAttach: function(worker) {
+  //     worker.port.on("dotpayData", function (data) {
+  //       recivedData = data;
+  //       console.log(recivedData)
+  //       if(recivedData != undefined) {
+  //         worker.port.emit('dotpayData2',recivedData);
+  //         console.log('Dane poszły w świat: ' + recivedData)
+  //       }
+  //   });
+  // }
 });
 
+function startListening(worker) {
+  worker.port.on ('dotpayData', function(data) {
+    console.log('back-end data')
+    console.log(data)
+    worker.port.emit('dotpayData2', data);
+  });
+}
 
