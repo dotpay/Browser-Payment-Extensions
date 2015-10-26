@@ -1,18 +1,12 @@
 var pageAdres = window.location.href;
 
 function sendDataBGZ () {
-  self.port.emit('dotpayData',dotpayData);
+  self.port.emit('dotpayDataBGZ',dotpayData);
   console.log('dane zostały wysłane')
 }
-function reciveDataBGZ () {
-  console.log('recive data - content script')
-  self.port.on ('reciveData', function (data) {
-    alert('dane odebrane!!!!')
-    console.log('dane odebrane')
-    console.log(data)
-  });
-  self.port.emit ('sendData', 'prośba o wysłanie danych');
-  console.log('To jest koniec - nie ma już nic do odebrania')
+function sendDataCreditAgricole () {
+  self.port.emit('dotpayDataCreditAgricole',dotpayData);
+  console.log('dane zostały wysłane')
 }
 
 /****************************************************
@@ -52,7 +46,6 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
                       +'</div> '
                     +'</div>';
     document.getElementById('js-plugin-send').addEventListener('click', sendDataBGZ);  //Triger
-    document.getElementById('js-plugin-clear').addEventListener('click', reciveDataBGZ);  //Triger
   } else if (img[0].href == 'https://e-bank.credit-agricole.pl/') {
     var info = document.getElementById('main-wrapper');
     info.innerHTML += '<div id="dotpay-info">'

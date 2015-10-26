@@ -1,14 +1,21 @@
+
+/****************************************************
+* Recive data from Firefox Add-on script
+*****************************************************/
 function reciveDataBGZ () {
-  console.log('recive data - content script')
   self.port.on ('reciveData', function (data) {
-    alert('dane odebrane!!!!')
-    console.log('dane odebrane')
-    console.log(data)
+    document.getElementById('id_account_nr').value = data[0];
+    document.getElementById('id_amount').value = data[1];
+    document.getElementById('id_title').value = data[2];
+    document.getElementById('id_name').value = data[3];
+    document.getElementById('id_address1').value = data[4];
+    document.getElementById('id_address2').value = data[5];
   });
   self.port.emit ('sendData', 'prośba o wysłanie danych');
-  console.log('To jest koniec - nie ma już nic do odebrania')
 }
-
+/****************************************************
+* Add to DOM
+*****************************************************/
 var info = document.getElementById('main');
 info.innerHTML += '<div id="dotpay-info-bank">'
                     +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
@@ -18,6 +25,6 @@ info.innerHTML += '<div id="dotpay-info-bank">'
                   +'</div>'
 
 /****************************************************
-* Triger
+* Triger for recive data
 *****************************************************/
 reciveDataBGZ();
