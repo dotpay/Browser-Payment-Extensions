@@ -1,10 +1,10 @@
 {
   "title": "Firefox Plugin",
-  "name": "firstPluginFirefox",
-  "version": "0.0.1",
-  "description": "DotPay plugin for Firefox",
+  "name": "Dotpay",
+  "version": "1.0.0",
+  "description": "DotPay.pl - plugin for Firefox",
   "main": "index.js",
-  "author": "Akra Polska",
+  "author": "Dotpay.pl",
   "engines": {
     "firefox": ">=38.0a1",
     "fennec": ">=38.0a1"
