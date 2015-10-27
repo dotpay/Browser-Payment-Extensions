@@ -3,9 +3,11 @@
   font-family: Helvetica, Arial, 'Lucida Grande', sans-serif;
   z-index: 5;
   position: fixed;
-  opacity: 0.2;
+  opacity: 0.5;
   right: 0;
-  min-width: 420px;
+  left: 50%;
+  max-width: 450px;
+  margin-left: -225px;
   -webkit-box-shadow: -3px -4px 5px 0px rgba(50, 50, 50, 0.75);
   -moz-box-shadow: -3px -4px 5px 0px rgba(50, 50, 50, 0.75);
   box-shadow: -2px -3px 5px 0px rgba(50, 50, 50, 0.4);
