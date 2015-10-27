@@ -37,5 +37,5 @@ chrome.runtime.onMessage.addListener(
 function(request, sender, sendResponse) {
   chrome.storage.sync.set({'dotpayData': request});
   if (request != undefined)
-      sendResponse({confirm: "Dane do przelewu zostały zapisane"});
+      sendResponse({confirm: "Stan pamięci: Dane do przelewu zostały zapisane"});
 });

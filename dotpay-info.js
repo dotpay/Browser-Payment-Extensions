@@ -63,7 +63,7 @@ function reciveDataBGZ() {
 function clearData(e) {
   e.preventDefault();
   chrome.storage.sync.clear(function(data){
-    document.getElementById('js-plugin-confirm').innerHTML = "Dane zostały usunięte z pamięci";
+    document.getElementById('js-plugin-confirm').innerHTML = "Stan pamięci: Dane zostały usunięte z pamięci";
   });
 }
 
@@ -124,7 +124,7 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
 
   chrome.storage.sync.get('dotpayData', function(data){
     if (data.dotpayData == undefined) {
-      document.getElementById('js-plugin-confirm').innerHTML = "Brak zapisanych danych w pamięci";
+      document.getElementById('js-plugin-confirm').innerHTML = "Stan pamięci: Brak zapisanych danych w pamięci";
     }
     else {
       document.getElementById('js-plugin-confirm').innerHTML = "W pamięci przeglądarki są już zapisane dane do realizacji przelewu";
@@ -141,17 +141,17 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
 * Check if demo.credit-agricole.pl - PAGE
 *****************************************************/
 if(pageAdres.startsWith('http://demo.credit-agricole.pl/')) {
-   var info = document.getElementById('mainForm');
-   info.innerHTML += '<div id="dotpay-info-bank">'
-                        +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
-                        +'<div class="plugin-title">'
-                          +'<img src="https://ssl.dotpay.pl/static_payment/images/layout/logos/logo.png" style="height: 20px" alt="doptay logo">Plugin DotPay.pl - Credit Agricole '
-                        +'</div> '
-                      +'</div>'
+  var info = document.getElementById('mainForm');
+  info.innerHTML += '<div id="dotpay-info-bank">'
+                      +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
+                      +'<div class="plugin-title">'
+                        +'<img src="https://ssl.dotpay.pl/static_payment/images/layout/logos/logo.png" style="height: 20px" alt="doptay logo">Plugin DotPay.pl - Credit Agricole '
+                      +'</div> '
+                    +'</div>'
 
   chrome.storage.sync.get('dotpayData', function(data){
     if (data.dotpayData == undefined) {
-      document.getElementById('js-plugin-confirm').innerHTML = "Brak zapisanych danych w pamięci";
+      document.getElementById('js-plugin-confirm').innerHTML = "Stan pamięci: Brak zapisanych danych w pamięci";
     }
     else {
       document.getElementById('js-plugin-confirm').innerHTML = "W pamięci przeglądarki są już zapisane dane do realizacji przelewu";
@@ -167,17 +167,17 @@ if(pageAdres.startsWith('http://demo.credit-agricole.pl/')) {
 * Check if demo.ebgz.pl - PAGE
 *****************************************************/
 if(pageAdres.startsWith('http://demo.ebgz.pl/')) {
-   var info = document.getElementById('main');
-   info.innerHTML += '<div id="dotpay-info-bank">'
-                        +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
-                        +'<div class="plugin-title">'
-                          +'<img src="https://ssl.dotpay.pl/static_payment/images/layout/logos/logo.png" style="height: 20px" alt="doptay logo">Plugin DotPay.pl - Credit Agricole '
-                        +'</div> '
-                      +'</div>'
+  var info = document.getElementById('main');
+  info.innerHTML += '<div id="dotpay-info-bank">'
+                      +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
+                      +'<div class="plugin-title">'
+                        +'<img src="https://ssl.dotpay.pl/static_payment/images/layout/logos/logo.png" style="height: 20px" alt="doptay logo">Plugin DotPay.pl - Credit Agricole '
+                      +'</div> '
+                    +'</div>'
 
   chrome.storage.sync.get('dotpayData', function(data){
     if (data.dotpayData == undefined) {
-      document.getElementById('js-plugin-confirm').innerHTML = "Brak zapisanych danych w pamięci";
+      document.getElementById('js-plugin-confirm').innerHTML = "Stan pamięci: Brak zapisanych danych w pamięci";
     }
     else {
       document.getElementById('js-plugin-confirm').innerHTML = "W pamięci przeglądarki są już zapisane dane do realizacji przelewu";
