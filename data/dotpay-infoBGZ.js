@@ -3,13 +3,21 @@
 * Recive data from Firefox Add-on script
 *****************************************************/
 function reciveDataBGZ () {
+  self.port.on ('reciveDataStatus', function (data) {
+      document.getElementById('js-plugin-confirm').innerHTML = data;
+    });
+  self.port.emit ('checkData', 'checkData');
   self.port.on ('reciveData', function (data) {
-    document.getElementById('id_account_nr').value = data[0];
-    document.getElementById('id_amount').value = data[1];
-    document.getElementById('id_title').value = data[2];
-    document.getElementById('id_name').value = data[3];
-    document.getElementById('id_address1').value = data[4];
-    document.getElementById('id_address2').value = data[5];
+    if (data != undefined) {
+      document.getElementById('id_account_nr').value = data[0];
+      document.getElementById('id_amount').value = data[1];
+      document.getElementById('id_title').value = data[2];
+      document.getElementById('id_name').value = data[3];
+      document.getElementById('id_address1').value = data[4];
+      document.getElementById('id_address2').value = data[5];
+      document.getElementById('js-plugin-confirm').innerHTML = 'Formularz został uzupełniony, a zapisane dane zostały usunięte z pamięci przeglądarki';
+      self.port.emit ('removeData', 'Remove data request');
+    }
   });
   self.port.emit ('sendData', 'prośba o wysłanie danych');
 }

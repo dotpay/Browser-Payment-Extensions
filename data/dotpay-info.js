@@ -3,10 +3,25 @@ var pageAdres = window.location.href;
 function sendDataBGZ () {
   self.port.emit('dotpayDataBGZ',dotpayData);
   console.log('dane zostały wysłane')
+  self.port.on ('reciveDataStatus', function (data) {
+    document.getElementById('js-plugin-confirm').innerHTML = data;
+  });
+  self.port.emit ('checkData', 'checkData');
 }
 function sendDataCreditAgricole () {
   self.port.emit('dotpayDataCreditAgricole',dotpayData);
   console.log('dane zostały wysłane')
+  self.port.on ('reciveDataStatus', function (data) {
+    document.getElementById('js-plugin-confirm').innerHTML = data;
+  });
+  self.port.emit ('checkData', 'checkData');
+}
+function removeData () {
+  self.port.emit ('removeData', 'Remove data request');
+  self.port.on ('reciveDataStatus', function (data) {
+    document.getElementById('js-plugin-confirm').innerHTML = data;
+  });
+  self.port.emit ('checkData', 'checkData');
 }
 
 /****************************************************
@@ -45,7 +60,12 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
                         +'<img src="/static_payment/images/layout/logos/logo.png" alt="doptay logo">Plugin DotPay.pl - BGŻ '
                       +'</div> '
                     +'</div>';
+  self.port.on ('reciveDataStatus', function (data) {
+    document.getElementById('js-plugin-confirm').innerHTML = data;
+  });
+  self.port.emit ('checkData', 'checkData');
     document.getElementById('js-plugin-send').addEventListener('click', sendDataBGZ);  //Triger
+    document.getElementById('js-plugin-clear').addEventListener('click', removeData);  //Triger
   } else if (img[0].href == 'https://e-bank.credit-agricole.pl/') {
     var info = document.getElementById('main-wrapper');
     info.innerHTML += '<div id="dotpay-info">'
@@ -58,6 +78,10 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
                           +'<img src="/static_payment/images/layout/logos/logo.png" alt="doptay logo">Plugin DotPay - Credit Agricole'
                         +' </div> '
                       +'</div>' ;
+  self.port.on ('reciveDataStatus', function (data) {
+    document.getElementById('js-plugin-confirm').innerHTML = data;
+  });
+  self.port.emit ('checkData', 'checkData');
     document.getElementById('js-plugin-send').addEventListener('click', sendDataCreditAgricole);  //Triger
   }
   else {
