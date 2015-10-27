@@ -81,6 +81,7 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
   });
   self.port.emit ('checkData', 'checkData');
     document.getElementById('js-plugin-send').addEventListener('click', sendDataCreditAgricole);  //Triger
+    document.getElementById('js-plugin-clear').addEventListener('click', removeData);  //Triger
   }
   else {
     console.log('Ten bank nie jest obsługiwany przez plugin DotPay');
