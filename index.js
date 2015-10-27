@@ -42,13 +42,13 @@ bankBGZ.PageMod({
   onAttach: startListening
 });
 
+/****************************************************
+* Add-on worker - listening
+*****************************************************/
 function startListening(worker) {
-  console.log('włączenie startListening')
   worker.port.on ('dotpayDataBGZ', function(rdata) {
     if( Object.prototype.toString.call( rdata ) === '[object Array]' ) {
       reciveData = rdata;
-      console.log('back-end recive data - Array: ')
-      console.log(reciveData)
     }
     tabs.open("http://demo.ebgz.pl/demo/przelewy/wykonaj-przelew/krajowy/");
   });
@@ -56,33 +56,24 @@ function startListening(worker) {
   worker.port.on ('dotpayDataCreditAgricole', function(rdata) {
     if( Object.prototype.toString.call( rdata ) === '[object Array]' ) {
       reciveData = rdata;
-      console.log('back-end recive data - Array: ')
-      console.log(reciveData)
     }
     tabs.open("http://demo.credit-agricole.pl/konta/symfonia/single_transfer-nowy-przelew-zwykly.htm");
   });
   worker.port.on ('sendData', function(rdata) {
-    console.log(rdata)
     if (reciveData != undefined) {
       worker.port.emit('reciveData', reciveData);
-      console.log('IF!!!!! dane wysłane')
     }else {
-      console.log('reciveData NIE jest tablicą!!!')
     }
   });
    worker.port.on ('removeData', function(rdata) {
-    console.log(rdata)
     reciveData = undefined;
-    console.log(reciveData)
   });
    worker.port.on ('checkData', function(rdata) {
     if (reciveData == undefined) {
       worker.port.emit('reciveDataStatus', 'Stan pamięci: Brak zapisanych danych');
-      console.log(reciveData)
     }
     else {
       worker.port.emit('reciveDataStatus', 'Stan pamięci: Dane do przelewu zostały zapisane ');
-      console.log(reciveData)
     }
   });
 }

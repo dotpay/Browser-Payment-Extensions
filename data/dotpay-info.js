@@ -2,7 +2,6 @@ var pageAdres = window.location.href;
 
 function sendDataBGZ () {
   self.port.emit('dotpayDataBGZ',dotpayData);
-  console.log('dane zostały wysłane')
   self.port.on ('reciveDataStatus', function (data) {
     document.getElementById('js-plugin-confirm').innerHTML = data;
   });
@@ -10,7 +9,6 @@ function sendDataBGZ () {
 }
 function sendDataCreditAgricole () {
   self.port.emit('dotpayDataCreditAgricole',dotpayData);
-  console.log('dane zostały wysłane')
   self.port.on ('reciveDataStatus', function (data) {
     document.getElementById('js-plugin-confirm').innerHTML = data;
   });
@@ -87,20 +85,4 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
   else {
     console.log('Ten bank nie jest obsługiwany przez plugin DotPay');
   }
-
-
-  // chrome.storage.sync.get('dotpayData', function(data){
-  //   if (data.dotpayData == undefined) {
-  //     document.getElementById('js-plugin-confirm').innerHTML = "Brak zapisanych danych w pamięci";
-  //   }
-  //   else {
-  //     document.getElementById('js-plugin-confirm').innerHTML = "W pamięci przeglądarki są już zapisane dane do realizacji przelewu";
-  //   }
-  // });
-
-  /****************************************************
-  * Triger
-  *****************************************************/
-  // document.getElementById('js-plugin-clear').addEventListener(
-  // 'click', clearData);
 }
