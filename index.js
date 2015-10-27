@@ -16,6 +16,7 @@ var button = buttons.ActionButton({
 *****************************************************/
 var pageMod = require("sdk/page-mod");
 var bankBGZ = require("sdk/page-mod");
+var bankCreditAgricole = require("sdk/page-mod");
 var data = require("sdk/self").data;
 var tabs = require("sdk/tabs");
 var reciveData;
@@ -35,7 +36,7 @@ bankBGZ.PageMod({
   contentStyleFile: require("sdk/self").data.url("dotpay-info.css"),
   onAttach: startListening
 });
-bankBGZ.PageMod({
+bankCreditAgricole.PageMod({
   include: "http://demo.credit-agricole.pl/konta/symfonia/single_transfer-nowy-przelew-zwykly.htm",
   contentScriptFile: data.url('dotpay-infoCreditAgricole.js'),
   contentStyleFile: require("sdk/self").data.url("dotpay-info.css"),
@@ -62,7 +63,6 @@ function startListening(worker) {
   worker.port.on ('sendData', function(rdata) {
     if (reciveData != undefined) {
       worker.port.emit('reciveData', reciveData);
-    }else {
     }
   });
    worker.port.on ('removeData', function(rdata) {
