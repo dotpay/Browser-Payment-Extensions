@@ -55,7 +55,7 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
                       +'</div>'
                       +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
                       +'<div class="plugin-title">'
-                        +'<img src="/static_payment/images/layout/logos/logo.png" alt="doptay logo">Plugin DotPay.pl - BGŻ '
+                        +'<img src="/static_payment/images/layout/logos/logo.png" alt="doptay logo">Plugin DotPay.pl - Bank BGŻ '
                       +'</div> '
                     +'</div>';
   self.port.on ('reciveDataStatus', function (data) {
@@ -73,7 +73,7 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
                         +'</div>'
                         +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
                         +'<div class="plugin-title">'
-                          +'<img src="/static_payment/images/layout/logos/logo.png" alt="doptay logo">Plugin DotPay - Credit Agricole'
+                          +'<img src="/static_payment/images/layout/logos/logo.png" alt="doptay logo">Plugin DotPay.pl - Credit Agricole'
                         +' </div> '
                       +'</div>' ;
   self.port.on ('reciveDataStatus', function (data) {

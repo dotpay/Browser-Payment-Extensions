@@ -28,7 +28,7 @@ var info = document.getElementById('main');
   info.innerHTML += '<div id="dotpay-info-bank">'
                     +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
                     +'<div class="plugin-title">'
-                      +'<img src="https://ssl.dotpay.pl/static_payment/images/layout/logos/logo.png" style="height: 20px" alt="doptay logo">Plugin DotPay.pl - Credit Agricole '
+                      +'<img src="https://ssl.dotpay.pl/static_payment/images/layout/logos/logo.png" style="height: 20px" alt="doptay logo">Plugin DotPay.pl - BGŻ BNP PARIBAS'
                     +'</div> '
                   +'</div>'
 
