@@ -100,7 +100,7 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
                       +'</div>'
                       +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
                       +'<div class="plugin-title">'
-                        +'<img src="/static_payment/images/layout/logos/logo.png" alt="doptay logo">Plugin DotPay.pl - BGŻ '
+                        +'<img src="/static_payment/images/layout/logos/logo.png" alt="doptay logo">Plugin DotPay.pl - BGŻ BNP PARIBAS'
                       +'</div> '
                     +'</div>';
     document.getElementById('js-plugin-send').addEventListener('click', sendDataBGZ);  //Triger
@@ -171,7 +171,7 @@ if(pageAdres.startsWith('http://demo.ebgz.pl/')) {
   info.innerHTML += '<div id="dotpay-info-bank">'
                       +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
                       +'<div class="plugin-title">'
-                        +'<img src="https://ssl.dotpay.pl/static_payment/images/layout/logos/logo.png" style="height: 20px" alt="doptay logo">Plugin DotPay.pl - Credit Agricole '
+                        +'<img src="https://ssl.dotpay.pl/static_payment/images/layout/logos/logo.png" style="height: 20px" alt="doptay logo">Plugin DotPay.pl - BGŻ BNP PARIBAS'
                       +'</div> '
                     +'</div>'
 
