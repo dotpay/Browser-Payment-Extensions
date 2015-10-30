@@ -10,7 +10,15 @@ var button = buttons.ActionButton({
     "64": "./Dotpay_64x64.png"
   }
 });
-
+/****************************************************
+* Configuration
+*****************************************************/
+var configBGZ = {
+  newWindowURL: 'http://demo.ebgz.pl/demo/przelewy/wykonaj-przelew/krajowy/'
+}
+var configCreditAgricole = {
+  newWindowURL: 'http://demo.credit-agricole.pl/konta/symfonia/single_transfer-nowy-przelew-zwykly.htm'
+}
 /****************************************************
 * Import the page-mod API
 *****************************************************/
@@ -51,14 +59,14 @@ function startListening(worker) {
     if( Object.prototype.toString.call( rdata ) === '[object Array]' ) {
       reciveData = rdata;
     }
-    tabs.open("http://demo.ebgz.pl/demo/przelewy/wykonaj-przelew/krajowy/");
+    tabs.open(configBGZ.newWindowURL);
   });
 
   worker.port.on ('dotpayDataCreditAgricole', function(rdata) {
     if( Object.prototype.toString.call( rdata ) === '[object Array]' ) {
       reciveData = rdata;
     }
-    tabs.open("http://demo.credit-agricole.pl/konta/symfonia/single_transfer-nowy-przelew-zwykly.htm");
+    tabs.open(configCreditAgricole.newWindowURL);
   });
   worker.port.on ('sendData', function(rdata) {
     if (reciveData != undefined) {

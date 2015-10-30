@@ -1,4 +1,15 @@
-
+/****************************************************
+* Configuration
+*****************************************************/
+var configBGZ = {
+  newWindowURL: 'http://demo.ebgz.pl/demo/przelewy/wykonaj-przelew/krajowy/',
+  accountNumber: 'id_account_nr',
+  amount: 'id_amount',
+  title: 'id_title',
+  name: 'id_name',
+  adresFirst: 'id_address1',
+  adresSecond: 'id_address2'
+}
 /****************************************************
 * Recive data from Firefox Add-on script
 *****************************************************/
@@ -9,12 +20,12 @@ function reciveDataBGZ () {
   self.port.emit ('checkData', 'checkData');
   self.port.on ('reciveData', function (data) {
     if (data != undefined) {
-      document.getElementById('id_account_nr').value = data[0];
-      document.getElementById('id_amount').value = data[1];
-      document.getElementById('id_title').value = data[2];
-      document.getElementById('id_name').value = data[3];
-      document.getElementById('id_address1').value = data[4];
-      document.getElementById('id_address2').value = data[5];
+      document.getElementById(configBGZ.accountNumber).value = data[0];
+      document.getElementById(configBGZ.amount).value = data[1];
+      document.getElementById(configBGZ.title).value = data[2];
+      document.getElementById(configBGZ.name).value = data[3];
+      document.getElementById(configBGZ.adresFirst).value = data[4];
+      document.getElementById(configBGZ.adresSecond).value = data[5];
       document.getElementById('js-plugin-confirm').innerHTML = 'Formularz został uzupełniony, a zapisane dane zostały usunięte z pamięci przeglądarki';
       self.port.emit ('removeData', 'Remove data request');
     }
@@ -24,7 +35,7 @@ function reciveDataBGZ () {
 /****************************************************
 * Add to DOM
 *****************************************************/
-var info = document.getElementById('main');
+var info = document.body;
   info.innerHTML += '<div id="dotpay-info-bank">'
                     +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
                     +'<div class="plugin-title">'
