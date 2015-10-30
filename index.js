@@ -34,19 +34,19 @@ var reciveData;
 *****************************************************/
 pageMod.PageMod({
   include: "https://ssl.dotpay.pl/t2/*",
-  contentScriptFile: data.url('dotpay-info.js'),
+  contentScriptFile: [data.url('dotpay-info.js'), data.url('dotpay-config.js')],
   contentStyleFile: require("sdk/self").data.url("dotpay-info.css"),
   onAttach: startListening
 });
 bankBGZ.PageMod({
   include: "http://demo.ebgz.pl/demo/przelewy/wykonaj-przelew/krajowy/",
-  contentScriptFile: data.url('dotpay-infoBGZ.js'),
+  contentScriptFile: [data.url('dotpay-infoBGZ.js'), data.url('dotpay-config.js')],
   contentStyleFile: require("sdk/self").data.url("dotpay-info.css"),
   onAttach: startListening
 });
 bankCreditAgricole.PageMod({
   include: "http://demo.credit-agricole.pl/konta/symfonia/single_transfer-nowy-przelew-zwykly.htm",
-  contentScriptFile: data.url('dotpay-infoCreditAgricole.js'),
+  contentScriptFile: [data.url('dotpay-infoCreditAgricole.js'), data.url('dotpay-config.js')],
   contentStyleFile: require("sdk/self").data.url("dotpay-info.css"),
   onAttach: startListening
 });
