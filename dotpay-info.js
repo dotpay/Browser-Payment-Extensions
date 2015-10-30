@@ -89,7 +89,7 @@ function clearData(e) {
 /****************************************************
 * Check if ssl.dotpay.pl - PAGE
 *****************************************************/
-if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
+if(pageAdres.startsWith('https://ssl.dotpay.pl/t2')) {
   var img = document.getElementById('channel_container_').getElementsByTagName('a');
   var iban = document.getElementById('iban').value;
   var amount = document.getElementById('amount').value;
@@ -111,7 +111,7 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
   * Display Plugin Box
   *****************************************************/
   if (img[0].href == 'http://www.bgz.pl/') {
-    var info = document.getElementById('main-wrapper');
+    var info = document.body;
     info.innerHTML += '<div id="dotpay-info">'
                       +'<div class="plugin-button">'
                         +'<button id="js-plugin-send" class="plugin-send">Zapisz dane przelewu oraz idź do strony banku</button>'
@@ -124,7 +124,7 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
                     +'</div>';
     document.getElementById('js-plugin-send').addEventListener('click', sendDataBGZ);  //Triger
   } else if (img[0].href == 'https://e-bank.credit-agricole.pl/') {
-    var info = document.getElementById('main-wrapper');
+    var info = document.body;
     info.innerHTML += '<div id="dotpay-info">'
                         +'<div class="plugin-button">'
                           +'<button id="js-plugin-send" class="plugin-send">Zapisz dane do przelewu oraz idź do strony banku</button>'
@@ -160,7 +160,7 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
 * Check if demo.credit-agricole.pl - PAGE
 *****************************************************/
 if(pageAdres.startsWith('http://demo.credit-agricole.pl/')) {
-  var info = document.getElementById('mainForm');
+  var info = document.body;
   info.innerHTML += '<div id="dotpay-info-bank">'
                       +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
                       +'<div class="plugin-title">'
@@ -186,7 +186,7 @@ if(pageAdres.startsWith('http://demo.credit-agricole.pl/')) {
 * Check if demo.ebgz.pl - PAGE
 *****************************************************/
 if(pageAdres.startsWith('http://demo.ebgz.pl/')) {
-  var info = document.getElementById('main');
+  var info = document.body;
   info.innerHTML += '<div id="dotpay-info-bank">'
                       +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
                       +'<div class="plugin-title">'
