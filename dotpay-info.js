@@ -1,6 +1,6 @@
 var pageAdres = window.location.href;
 /****************************************************
-* Initial data - form ID
+* Configuration
 *****************************************************/
 var configBGZ = {
   newWindowURL: 'http://demo.ebgz.pl/demo/przelewy/wykonaj-przelew/krajowy/',
