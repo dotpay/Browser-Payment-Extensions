@@ -47,7 +47,7 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
   * Display Plugin Box
   *****************************************************/
   if (img[0].href == 'http://www.bgz.pl/') {
-    var info = document.getElementById('main-wrapper');
+    var info = document.body;
     info.innerHTML += '<div id="dotpay-info">'
                       +'<div class="plugin-button">'
                         +'<button id="js-plugin-send" class="plugin-send">Zapisz dane przelewu oraz idź do strony banku</button>'
@@ -65,7 +65,7 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl')) {
     document.getElementById('js-plugin-send').addEventListener('click', sendDataBGZ);  //Triger
     document.getElementById('js-plugin-clear').addEventListener('click', removeData);  //Triger
   } else if (img[0].href == 'https://e-bank.credit-agricole.pl/') {
-    var info = document.getElementById('main-wrapper');
+    var info = document.body;
     info.innerHTML += '<div id="dotpay-info">'
                         +'<div class="plugin-button">'
                           +'<button id="js-plugin-send" class="plugin-send">Zapisz dane do przelewu oraz idź do strony banku</button>'

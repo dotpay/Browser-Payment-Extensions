@@ -1,16 +1,4 @@
 /****************************************************
-* Configuration
-*****************************************************/
-var configBGZ = {
-  newWindowURL: 'http://demo.ebgz.pl/demo/przelewy/wykonaj-przelew/krajowy/',
-  accountNumber: 'id_account_nr',
-  amount: 'id_amount',
-  title: 'id_title',
-  name: 'id_name',
-  adresFirst: 'id_address1',
-  adresSecond: 'id_address2'
-}
-/****************************************************
 * Recive data from Firefox Add-on script
 *****************************************************/
 function reciveDataBGZ () {

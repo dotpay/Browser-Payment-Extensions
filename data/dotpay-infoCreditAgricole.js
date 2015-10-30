@@ -1,16 +1,4 @@
 /****************************************************
-* Configuration
-*****************************************************/
-var configCreditAgricole = {
-  newWindowURL: 'http://demo.credit-agricole.pl/konta/symfonia/single_transfer-nowy-przelew-zwykly.htm',
-  accountNumber: 'ben_account',
-  amount: 'amount',
-  title: 'title_1',
-  name: 'beneficiary_1',
-  adresFirst: 'beneficiary_2',
-  adresSecond: 'beneficiary_3'
-}
-/****************************************************
 * Recive data from Firefox Add-on script
 *****************************************************/
 function reciveDataCreditAgricole () {
