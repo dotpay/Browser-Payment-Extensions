@@ -1,5 +1,25 @@
 var pageAdres = window.location.href;
-
+/****************************************************
+* Initial data - form ID
+*****************************************************/
+var initialBGZ = {
+  newWindowURL: 'http://demo.ebgz.pl/demo/przelewy/wykonaj-przelew/krajowy/',
+  accountNumber: 'id_account_nr',
+  amount: 'id_amount',
+  title: 'id_title',
+  name: 'id_name',
+  adresFirst: 'id_address1',
+  adresSecond: 'id_address2'
+}
+var initialCreditAgricole = {
+  newWindowURL: 'http://demo.credit-agricole.pl/konta/symfonia/single_transfer-nowy-przelew-zwykly.htm',
+  accountNumber: 'ben_account',
+  amount: 'amount',
+  title: 'title_1',
+  name: 'beneficiary_1',
+  adresFirst: 'beneficiary_2',
+  adresSecond: 'beneficiary_3'
+}
 /****************************************************
 * Send data to plugin
 *****************************************************/
@@ -7,14 +27,14 @@ function sendDataCreditAgricole(e) {
   e.preventDefault();
   chrome.runtime.sendMessage(dotpayData, function(response){
     document.getElementById('js-plugin-confirm').innerHTML = response.confirm;
-    window.open('http://demo.credit-agricole.pl/konta/symfonia/single_transfer-nowy-przelew-zwykly.htm','_blank');
+    window.open(initialCreditAgricole.newWindowURL,'_blank');
   });
 }
 function sendDataBGZ(e) {
   e.preventDefault();
   chrome.runtime.sendMessage(dotpayData, function(response){
     document.getElementById('js-plugin-confirm').innerHTML = response.confirm;
-    window.open('http://demo.ebgz.pl/demo/przelewy/wykonaj-przelew/krajowy/','_blank');
+    window.open(initialBGZ.newWindowURL,'_blank');
   });
 }
 /*****************************************************
@@ -23,12 +43,12 @@ function sendDataBGZ(e) {
 function reciveDataCreditAgricole() {
   chrome.storage.sync.get('dotpayData', function(data){
     if (data.dotpayData != undefined) {
-      document.getElementById('ben_account').value = data.dotpayData[0];
-      document.getElementById('amount').value = data.dotpayData[1];
-      document.getElementById('title_1').value = data.dotpayData[2];
-      document.getElementById('beneficiary_1').value = data.dotpayData[3];
-      document.getElementById('beneficiary_2').value = data.dotpayData[4];
-      document.getElementById('beneficiary_3').value = data.dotpayData[5];
+      document.getElementById(initialCreditAgricole.accountNumber).value = data.dotpayData[0];
+      document.getElementById(initialCreditAgricole.amount).value = data.dotpayData[1];
+      document.getElementById(initialCreditAgricole.title).value = data.dotpayData[2];
+      document.getElementById(initialCreditAgricole.name).value = data.dotpayData[3];
+      document.getElementById(initialCreditAgricole.adresFirst).value = data.dotpayData[4];
+      document.getElementById(initialCreditAgricole.adresSecond).value = data.dotpayData[5];
       // Remove form storage after recive data
       chrome.storage.sync.clear(function(data){
         document.getElementById('js-plugin-confirm').innerHTML = "Formularz został uzupełniony, a zapisane dane zostały usunięte z pamięci przeglądarki";
@@ -43,12 +63,12 @@ function reciveDataCreditAgricole() {
 function reciveDataBGZ() {
   chrome.storage.sync.get('dotpayData', function(data){
     if (data.dotpayData != undefined) {
-      document.getElementById('id_account_nr').value = data.dotpayData[0];
-      document.getElementById('id_amount').value = data.dotpayData[1];
-      document.getElementById('id_title').value = data.dotpayData[2];
-      document.getElementById('id_name').value = data.dotpayData[3];
-      document.getElementById('id_address1').value = data.dotpayData[4];
-      document.getElementById('id_address2').value = data.dotpayData[5];
+      document.getElementById(initialBGZ.accountNumber).value = data.dotpayData[0];
+      document.getElementById(initialBGZ.amount).value = data.dotpayData[1];
+      document.getElementById(initialBGZ.title).value = data.dotpayData[2];
+      document.getElementById(initialBGZ.name).value = data.dotpayData[3];
+      document.getElementById(initialBGZ.adresFirst).value = data.dotpayData[4];
+      document.getElementById(initialBGZ.adresSecond).value = data.dotpayData[5];
       // Remove form storage after recive data
       chrome.storage.sync.clear(function(data){
         document.getElementById('js-plugin-confirm').innerHTML = "Formularz został uzupełniony, a zapisane dane zostały usunięte z pamięci przeglądarki";
@@ -56,7 +76,6 @@ function reciveDataBGZ() {
     }
   });
 }
-
 /****************************************************
 * Remove data for plugin                            *
 *****************************************************/
