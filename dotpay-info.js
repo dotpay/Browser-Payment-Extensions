@@ -14,7 +14,7 @@ var configBGZ = {
 }
 var configCreditAgricole = {
   newWindowURL: 'https://e-bank.credit-agricole.pl',
-  initialBankURL: 'https://e-bank.credit-agricole.pl/web',
+  initialBankURL: 'https://e-bank.credit-agricole.pl',
   accountNumber: 'ben_account',
   amount: 'amount',
   title: 'title_1',
