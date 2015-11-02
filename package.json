@@ -1,8 +1,8 @@
 {
-  "title": "DotPay.pl - Plugin",
+  "title": "DotPay.pl - Firefox",
   "name": "Dotpay",
   "version": "1.0.0",
-  "description": "DotPay.pl - plugin for Firefox",
+  "description": "DotPay.pl - Plugin pozwala na automatycznie uzupełnianie formularzy przelewów w bankach nie oferujących usług e-transferów.",
   "main": "index.js",
   "author": "Dotpay.pl",
   "engines": {
