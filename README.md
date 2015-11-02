@@ -21,3 +21,5 @@ adresSecond: ​ID pola odpowiadającego drugiej części adresu
 
 ## Umieszczenie pluginu do pobrania w add-ons Firefox:
 Procedura jak umieścić plugin "do pobrania" w add-ons Firefox: https://developer.mozilla.org/en-US/Add-ons/Distribution
+
+Procedura jak edytować/developować plugin po ewentualnej zmianie paramatrów: https://developer.mozilla.org/en-US/Add-ons/SDK/Tutorials/Getting_Started_(jpm)​ - Tworzenie pliku XPI w sekcji "Packaking Add-ons"
