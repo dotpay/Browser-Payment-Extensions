@@ -23,7 +23,7 @@ function reciveDataBGZ () {
 /****************************************************
 * Add to DOM
 *****************************************************/
-var info = document.body;
+var info = document.querySelector('body').firstElementChild;
   info.innerHTML += '<div id="dotpay-info-bank">'
                     +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
                     +'<div class="plugin-title">'

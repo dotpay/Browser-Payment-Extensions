@@ -6,6 +6,7 @@ function sendDataBGZ () {
     document.getElementById('js-plugin-confirm').innerHTML = data;
   });
   self.port.emit ('checkData', 'checkData');
+  window.open(configBGZ.newWindowURL,'_blank');
 }
 function sendDataCreditAgricole () {
   self.port.emit('dotpayDataCreditAgricole',dotpayData);
@@ -13,6 +14,7 @@ function sendDataCreditAgricole () {
     document.getElementById('js-plugin-confirm').innerHTML = data;
   });
   self.port.emit ('checkData', 'checkData');
+  window.open(configCreditAgricole.newWindowURL,'_blank');
 }
 function removeData () {
   self.port.emit ('removeData', 'Remove data request');

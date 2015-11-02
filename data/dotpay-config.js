@@ -2,6 +2,7 @@
 * Configuration
 *****************************************************/
 var configBGZ = {
+  newWindowURL: 'https://www.ebgz.pl',
   accountNumber: 'id_account_nr',
   amount: 'id_amount',
   title: 'id_title',
@@ -10,6 +11,7 @@ var configBGZ = {
   adresSecond: 'id_address2'
 }
 var configCreditAgricole = {
+  newWindowURL: 'https://e-bank.credit-agricole.pl',
   accountNumber: 'ben_account',
   amount: 'amount',
   title: 'title_1',

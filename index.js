@@ -11,15 +11,6 @@ var button = buttons.ActionButton({
   }
 });
 /****************************************************
-* Configuration
-*****************************************************/
-var configBGZ = {
-  newWindowURL: 'http://demo.ebgz.pl/demo/przelewy/wykonaj-przelew/krajowy/'
-}
-var configCreditAgricole = {
-  newWindowURL: 'http://demo.credit-agricole.pl/konta/symfonia/single_transfer-nowy-przelew-zwykly.htm'
-}
-/****************************************************
 * Import the page-mod API
 *****************************************************/
 var pageMod = require("sdk/page-mod");
@@ -28,9 +19,8 @@ var bankCreditAgricole = require("sdk/page-mod");
 var data = require("sdk/self").data;
 var tabs = require("sdk/tabs");
 var reciveData;
-
 /****************************************************
-* Include scripts and CSS to page
+* Include scripts and CSS to page - Configuration
 *****************************************************/
 pageMod.PageMod({
   include: "https://ssl.dotpay.pl/t2/*",
@@ -39,13 +29,13 @@ pageMod.PageMod({
   onAttach: startListening
 });
 bankBGZ.PageMod({
-  include: "http://demo.ebgz.pl/demo/przelewy/wykonaj-przelew/krajowy/",
+  include: "https://www.ebgz.pl/*",
   contentScriptFile: [data.url('dotpay-infoBGZ.js'), data.url('dotpay-config.js')],
   contentStyleFile: require("sdk/self").data.url("dotpay-info.css"),
   onAttach: startListening
 });
 bankCreditAgricole.PageMod({
-  include: "http://demo.credit-agricole.pl/konta/symfonia/single_transfer-nowy-przelew-zwykly.htm",
+  include: "https://e-bank.credit-agricole.pl/*",
   contentScriptFile: [data.url('dotpay-infoCreditAgricole.js'), data.url('dotpay-config.js')],
   contentStyleFile: require("sdk/self").data.url("dotpay-info.css"),
   onAttach: startListening
@@ -59,14 +49,12 @@ function startListening(worker) {
     if( Object.prototype.toString.call( rdata ) === '[object Array]' ) {
       reciveData = rdata;
     }
-    tabs.open(configBGZ.newWindowURL);
   });
 
   worker.port.on ('dotpayDataCreditAgricole', function(rdata) {
     if( Object.prototype.toString.call( rdata ) === '[object Array]' ) {
       reciveData = rdata;
     }
-    tabs.open(configCreditAgricole.newWindowURL);
   });
   worker.port.on ('sendData', function(rdata) {
     if (reciveData != undefined) {
