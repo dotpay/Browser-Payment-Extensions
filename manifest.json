@@ -14,7 +14,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["http://demo.credit-agricole.pl/*", "https://ssl.dotpay.pl/t2/*", "http://demo.ebgz.pl/*"],
+      "matches": ["https://e-bank.credit-agricole.pl/*", "https://ssl.dotpay.pl/t2/*", "https://www.ebgz.pl/*"],
       "css": ["dotpay-info.css"],
       "js": ["dotpay-info.js"],
       "run_at": "document_end"

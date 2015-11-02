@@ -3,7 +3,8 @@ var pageAdres = window.location.href;
 * Configuration
 *****************************************************/
 var configBGZ = {
-  newWindowURL: 'http://demo.ebgz.pl/demo/przelewy/wykonaj-przelew/krajowy/',
+  newWindowURL: 'https://www.ebgz.pl',
+  initialBankURL: 'https://www.ebgz.pl/detal-web/',
   accountNumber: 'id_account_nr',
   amount: 'id_amount',
   title: 'id_title',
@@ -12,7 +13,8 @@ var configBGZ = {
   adresSecond: 'id_address2'
 }
 var configCreditAgricole = {
-  newWindowURL: 'http://demo.credit-agricole.pl/konta/symfonia/single_transfer-nowy-przelew-zwykly.htm',
+  newWindowURL: 'https://e-bank.credit-agricole.pl',
+  initialBankURL: 'https://e-bank.credit-agricole.pl/web',
   accountNumber: 'ben_account',
   amount: 'amount',
   title: 'title_1',
@@ -146,7 +148,7 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl/t2')) {
       document.getElementById('js-plugin-confirm').innerHTML = "Stan pamięci: Brak zapisanych danych w pamięci";
     }
     else {
-      document.getElementById('js-plugin-confirm').innerHTML = "W pamięci przeglądarki są już zapisane dane do realizacji przelewu";
+      document.getElementById('js-plugin-confirm').innerHTML = "W pamięci przeglądarki są zapisane dane do realizacji przelewu";
     }
   });
 
@@ -159,7 +161,7 @@ if(pageAdres.startsWith('https://ssl.dotpay.pl/t2')) {
 /****************************************************
 * Check if demo.credit-agricole.pl - PAGE
 *****************************************************/
-if(pageAdres.startsWith('http://demo.credit-agricole.pl/')) {
+if(pageAdres.startsWith(configCreditAgricole.initialBankURL)) {
   var info = document.body;
   info.innerHTML += '<div id="dotpay-info-bank">'
                       +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
@@ -173,7 +175,7 @@ if(pageAdres.startsWith('http://demo.credit-agricole.pl/')) {
       document.getElementById('js-plugin-confirm').innerHTML = "Stan pamięci: Brak zapisanych danych w pamięci";
     }
     else {
-      document.getElementById('js-plugin-confirm').innerHTML = "W pamięci przeglądarki są już zapisane dane do realizacji przelewu";
+      document.getElementById('js-plugin-confirm').innerHTML = "W pamięci przeglądarki są zapisane dane do realizacji przelewu";
     }
   });
 
@@ -185,7 +187,7 @@ if(pageAdres.startsWith('http://demo.credit-agricole.pl/')) {
 /****************************************************
 * Check if demo.ebgz.pl - PAGE
 *****************************************************/
-if(pageAdres.startsWith('http://demo.ebgz.pl/')) {
+if(pageAdres.startsWith(configBGZ.initialBankURL)) {
   var info = document.body;
   info.innerHTML += '<div id="dotpay-info-bank">'
                       +'<div id="js-plugin-confirm" class="plugin-confirm"></div>'
@@ -199,7 +201,7 @@ if(pageAdres.startsWith('http://demo.ebgz.pl/')) {
       document.getElementById('js-plugin-confirm').innerHTML = "Stan pamięci: Brak zapisanych danych w pamięci";
     }
     else {
-      document.getElementById('js-plugin-confirm').innerHTML = "W pamięci przeglądarki są już zapisane dane do realizacji przelewu";
+      document.getElementById('js-plugin-confirm').innerHTML = "W pamięci przeglądarki są zapisane dane do realizacji przelewu";
     }
   });
 
